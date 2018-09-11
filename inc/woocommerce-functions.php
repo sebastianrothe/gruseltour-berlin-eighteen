@@ -100,40 +100,42 @@ function add_customer_fields_display_admin_order_meta($order)
 add_action('wpo_wcpdf_after_order_details', 'wpo_wcpdf_customer_data', 10, 2);
 function wpo_wcpdf_customer_data($template_type, $order)
 {
-    echo '<p>Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG.</p><br /><br />';
+    echo '<p>Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG.</p><br />';
+    echo '<hr /><br />';
 
     //$document = wcpdf_get_document($template_type, $order);
     //echo '<pre>', print_r($order->items, 1), '</pre>';
 
-    echo '<section><h2>KUNDENDATEN</h2><br />';
+    echo '<section><h2>GAST</h2><br />';
     echo '<ul>';
     echo '<li><strong>' . __('Name') . ':</strong> ' . get_post_meta($order->get_id(), 'customer--name', true) . '</li>';
     echo '<li><strong>' . __('Telefon') . ':</strong> ' . get_post_meta($order->get_id(), 'customer--phone', true) . '</li>';
     echo '<li><strong>' . __('eMail') . ':</strong> ' . get_post_meta($order->get_id(), 'customer--email', true) . '</li>';
-    echo '</ul></section><br /><br />';
+    echo '</ul></section><br />';
+    echo '<hr /><br />';
 
     echo '<section><h2>TICKETS</h2><br />
-    <p>Hiermit erhaltet ihr offiziell Zutritt zur dunklen Seite der Stadt Berlin!<br /><br />
-    Aber nur, wenn ihr euch traut. Denn ihr werdet in eine Welt voller düsterer Legenden, gruseliger Geheimnisse aus der Vergangenheit und Furcht einflößender Begebenheiten entführt!</p><br />';
+    <p style="text-align:center;"><span style="font-weight:bold;">Hiermit erhaltet ihr offiziell Zutritt zur dunklen Seite der Stadt Berlin!</span><br /><br />
+    Aber nur, wenn ihr euch traut. Denn ihr werdet in eine Welt voller düsterer Legenden, gruseliger<br />Geheimnisse aus der Vergangenheit und Furcht einflößender Begebenheiten entführt!</p><br /><br />';
 
     foreach ($order->items as $item) {
-        echo '<article><h2>' . $item->get_name() . '</h2><br /><ul>';
+        echo '<article><h2>' . $item->get_name() . '</h2><br /><ol>';
         echo '<li><strong>' . __('TICKETNUMMER') . ':</strong> ' . get_post_meta($order->get_id(), '_wcpdf_invoice_number', true) . '</li>';
         echo '<li><strong>' . __('DATUM') . ':</strong> ' . $item->get_meta('datum') . '</li>';
         echo '<li><strong>' . __('PERSONEN') . ':</strong> ' . $item->get_quantity() . '</li>';
-        echo '</ul></article><br />';
+        echo '</ol></article><br /><br />';
     }
-    echo '</section>';
+    echo '</section><br /><br />';
 
     echo '<section><h2>TREFFPUNKT</h2><br />
-    <p>Hiermit erhaltet ihr offiziell Zutritt zur dunklen Seite der Stadt Berlin!<br /><br />
-    Aber nur, wenn ihr euch traut. Denn ihr werdet in eine Welt voller düsterer Legenden, gruseliger Geheimnisse aus der Vergangenheit und Furcht einflößender Begebenheiten entführt!</p><br />';
+    <p>Klosterstraße plus Bild</p><br />';
+    echo '</section><br /><br />';
 
     echo '<section><h2>INFORMATIONEN</h2><br />
-    <p>Hiermit erhaltet ihr offiziell Zutritt zur dunklen Seite der Stadt Berlin!<br /><br />
-    Aber nur, wenn ihr euch traut. Denn ihr werdet in eine Welt voller düsterer Legenden, gruseliger Geheimnisse aus der Vergangenheit und Furcht einflößender Begebenheiten entführt!</p><br />';
+    <p>Parken, Toilette, Zu Fuß, Wetterfeste Kleidung</p><br />';
+    echo '</section><br /><br />';
 
     echo '<section><h2>KONTAKT</h2><br />
-    <p>Hiermit erhaltet ihr offiziell Zutritt zur dunklen Seite der Stadt Berlin!<br /><br />
-    Aber nur, wenn ihr euch traut. Denn ihr werdet in eine Welt voller düsterer Legenden, gruseliger Geheimnisse aus der Vergangenheit und Furcht einflößender Begebenheiten entführt!</p><br />';
+    <p>Telefon Mail</p>';
+    echo '</section>';
 }
