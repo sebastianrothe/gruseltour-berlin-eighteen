@@ -13,21 +13,19 @@
 add_action('woocommerce_before_order_notes', 'add_customer_data_fields');
 function add_customer_data_fields($checkout)
 {
-    echo '<section id="customer-data"><h2>' . __('Kundendaten') . '</h2>';
+    echo '<section id="customer-data"><h3>' . __('Informationen zum Gast') . '</h3>';
 
     woocommerce_form_field('customer--name', [
         'type' => 'text',
         'class' => ['form-row-first'],
         'label' => __('Vorname'),
-        'placeholder' => __('Vorname'),
         'required' => true,
     ], $checkout->get_value('customer--name'));
 
-    woocommerce_form_field('customer-phone', [
-        'type' => 'telephone',
+    woocommerce_form_field('customer--phone', [
+        'type' => 'text',
         'class' => ['form-row-last'],
         'label' => __('Telefonnummer'),
-        'placeholder' => __('0177 1234567'),
         'required' => true,
     ], $checkout->get_value('customer--phone'));
 
@@ -35,7 +33,6 @@ function add_customer_data_fields($checkout)
         'type' => 'email',
         'class' => ['form-row-wide'],
         'label' => __('Email'),
-        'placeholder' => __('customer@web.com'),
         'required' => true,
     ], $checkout->get_value('customer--email'));
 
@@ -49,15 +46,15 @@ add_action('woocommerce_checkout_process', 'customer_data_field_process');
 function customer_data_field_process()
 {
     if (!$_POST['customer--name']) {
-        wc_add_notice(__('Bitte geben Sie den Vornamen des Kunden ein.'), 'error');
+        wc_add_notice(__('Bitte geben Sie den Vornamen des Gastes ein.'), 'error');
     }
 
-    if (!$_POST['customer-phone']) {
+    if (!$_POST['customer--phone']) {
         wc_add_notice(__('Wir benötigen die Telefonnummer, falls es kurzfristige Änderungen an der Tour gibt.'), 'error');
     }
 
-    if (!$_POST['customer-email']) {
-        wc_add_notice(__('Wir benötigen die eMail-Adresse, um dem Kunden hinterher um eine Bewertung der Tour zu bitten.'), 'error');
+    if (!$_POST['customer--email']) {
+        wc_add_notice(__('Wir benötigen die eMail-Adresse, um dem Gast hinterher um eine Bewertung der Tour zu bitten.'), 'error');
     }
 }
 
@@ -83,14 +80,60 @@ function customer_data_field_update_order_meta($order_id)
 /**
  * Display field value on the order edit page
  */
-add_action('woocommerce_admin_order_data_after_billing_address', 'add_customer_fields_display_admin_order_meta');
+add_action('woocommerce_admin_order_data_after_order_details', 'add_customer_fields_display_admin_order_meta');
 function add_customer_fields_display_admin_order_meta($order)
 {
-    echo '<section id="customer-data"><h2>' . __('Kundendaten') . '</h2>';
+    echo '<div class="order_data_column">';
+    echo '<section id="customer-data"><h3>' . __('Kundendaten') . '</h3>';
 
     echo '<p><strong>' . __('Name') . ':</strong> ' . get_post_meta($order->get_id(), 'customer--name', true) . '</p>';
     echo '<p><strong>' . __('Telefon') . ':</strong> ' . get_post_meta($order->get_id(), 'customer--phone', true) . '</p>';
     echo '<p><strong>' . __('eMail') . ':</strong> ' . get_post_meta($order->get_id(), 'customer--email', true) . '</p>';
 
     echo '</section>';
+    echo '</div>';
+}
+
+/**
+ * Display field value on the invoice
+ */
+add_action('wpo_wcpdf_after_order_details', 'wpo_wcpdf_customer_data', 10, 2);
+function wpo_wcpdf_customer_data($template_type, $order)
+{
+    echo '<p>Kein Mehrwertsteuerausweis, da Kleinunternehmer nach §19 (1) UStG.</p><br /><br />';
+
+    //$document = wcpdf_get_document($template_type, $order);
+    //echo '<pre>', print_r($order->items, 1), '</pre>';
+
+    echo '<section><h2>KUNDENDATEN</h2><br />';
+    echo '<ul>';
+    echo '<li><strong>' . __('Name') . ':</strong> ' . get_post_meta($order->get_id(), 'customer--name', true) . '</li>';
+    echo '<li><strong>' . __('Telefon') . ':</strong> ' . get_post_meta($order->get_id(), 'customer--phone', true) . '</li>';
+    echo '<li><strong>' . __('eMail') . ':</strong> ' . get_post_meta($order->get_id(), 'customer--email', true) . '</li>';
+    echo '</ul></section><br /><br />';
+
+    echo '<section><h2>TICKETS</h2><br />
+    <p>Hiermit erhaltet ihr offiziell Zutritt zur dunklen Seite der Stadt Berlin!<br /><br />
+    Aber nur, wenn ihr euch traut. Denn ihr werdet in eine Welt voller düsterer Legenden, gruseliger Geheimnisse aus der Vergangenheit und Furcht einflößender Begebenheiten entführt!</p><br />';
+
+    foreach ($order->items as $item) {
+        echo '<article><h2>' . $item->get_name() . '</h2><br /><ul>';
+        echo '<li><strong>' . __('TICKETNUMMER') . ':</strong> ' . get_post_meta($order->get_id(), '_wcpdf_invoice_number', true) . '</li>';
+        echo '<li><strong>' . __('DATUM') . ':</strong> ' . $item->get_meta('datum') . '</li>';
+        echo '<li><strong>' . __('PERSONEN') . ':</strong> ' . $item->get_quantity() . '</li>';
+        echo '</ul></article><br />';
+    }
+    echo '</section>';
+
+    echo '<section><h2>TREFFPUNKT</h2><br />
+    <p>Hiermit erhaltet ihr offiziell Zutritt zur dunklen Seite der Stadt Berlin!<br /><br />
+    Aber nur, wenn ihr euch traut. Denn ihr werdet in eine Welt voller düsterer Legenden, gruseliger Geheimnisse aus der Vergangenheit und Furcht einflößender Begebenheiten entführt!</p><br />';
+
+    echo '<section><h2>INFORMATIONEN</h2><br />
+    <p>Hiermit erhaltet ihr offiziell Zutritt zur dunklen Seite der Stadt Berlin!<br /><br />
+    Aber nur, wenn ihr euch traut. Denn ihr werdet in eine Welt voller düsterer Legenden, gruseliger Geheimnisse aus der Vergangenheit und Furcht einflößender Begebenheiten entführt!</p><br />';
+
+    echo '<section><h2>KONTAKT</h2><br />
+    <p>Hiermit erhaltet ihr offiziell Zutritt zur dunklen Seite der Stadt Berlin!<br /><br />
+    Aber nur, wenn ihr euch traut. Denn ihr werdet in eine Welt voller düsterer Legenden, gruseliger Geheimnisse aus der Vergangenheit und Furcht einflößender Begebenheiten entführt!</p><br />';
 }
