@@ -115,7 +115,7 @@ function wpo_wcpdf_customer_data($template_type, $order)
     echo '<hr /><br />';
 
     echo '<section><h2>TICKETS</h2><br />
-    <p style="text-align:center;"><span style="font-weight:bold;">Hiermit erhaltet ihr offiziell Zutritt zur dunklen Seite der Stadt Berlin!</span><br /><br />
+    <p><span style="font-weight:bold;">Hiermit erhaltet ihr offiziell Zutritt zur dunklen Seite der Stadt Berlin!</span><br /><br />
     Aber nur, wenn ihr euch traut. Denn ihr werdet in eine Welt voller düsterer Legenden, gruseliger<br />Geheimnisse aus der Vergangenheit und Furcht einflößender Begebenheiten entführt!</p><br /><br />';
 
     foreach ($order->items as $item) {
