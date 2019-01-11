@@ -17,7 +17,5 @@ if (function_exists('the_privacy_policy_link')) {
 ?>
 	<a href="/impressum/" class="imprint">Impressum</a>
 	<span role="separator" aria-hidden="true"></span>
-	<a href="/jobs/" class="imprint">Jobs</a>
-	<span role="separator" aria-hidden="true"></span>
-	<span>Gruseltour Berlin 👻 is made with ❤️ and ☕ in Berlin and Leipzig. © 2018</span>
+	<span>Gruseltour Berlin 👻 is made with ❤️ and ☕ in Berlin and Leipzig. © <?php echo date("Y"); ?></span>
 </div><!-- .site-info -->
