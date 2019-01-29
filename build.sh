@@ -1,5 +1,5 @@
 #!/bin/sh
-zip -r -9 dist/gruseltour-berlin-eighteen-1.0.0.zip gruseltour-berlin-eighteen \
+zip -r -9 dist/gruseltour-berlin-eighteen-1.0.0.zip src \
     -x */.DS_Store \
     -x */.git \
     -x */.svn \
