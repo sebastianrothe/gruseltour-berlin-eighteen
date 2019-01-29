@@ -609,13 +609,3 @@ require get_parent_theme_file_path( '/inc/customizer.php' );
  * SVG icons functions and filters.
  */
 require get_parent_theme_file_path( '/inc/icon-functions.php' );
-
-/**
- * WooCommerce adjustments functions and filters.
- */
-require get_parent_theme_file_path( '/inc/woocommerce-functions.php' );
-
-/**
-* Gruseltour Berlin adjustments functions and filters.
-*/
-require get_parent_theme_file_path( '/inc/gtberlin-functions.php' );
