@@ -14,9 +14,9 @@ function gtberlin_2018_enqueue_styles() {
 /**
  * WooCommerce adjustments functions and filters.
  */
-require get_stylesheet_directory() . '/inc/woocommerce-functions.php';
+require get_template_directory() . '/inc/woocommerce-functions.php';
 
 /**
 * Gruseltour Berlin adjustments functions and filters.
 */
-require get_stylesheet_directory() . '/inc/gtberlin-functions.php';
+require get_template_directory() . '/inc/gtberlin-functions.php';
