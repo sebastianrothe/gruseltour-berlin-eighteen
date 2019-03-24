@@ -17,6 +17,11 @@ function gtberlin_2018_enqueue_styles() {
 require get_template_directory() . '/inc/woocommerce-functions.php';
 
 /**
+* WPO WCPDF adjustments functions and filters.
+*/
+require get_template_directory() . '/inc/wpo_wcpdf-functions.php.php';
+
+/**
 * Gruseltour Berlin adjustments functions and filters.
 */
 require get_template_directory() . '/inc/gtberlin-functions.php';
