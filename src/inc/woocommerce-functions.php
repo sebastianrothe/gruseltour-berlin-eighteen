@@ -46,7 +46,7 @@ add_action('woocommerce_checkout_process', 'customer_data_field_process');
 function customer_data_field_process()
 {
     if (!$_POST['customer--name']) {
-        wc_add_notice(__('Bitte geben Sie den Vornamen des Gastes ein.'), 'error');
+        wc_add_notice(__('Bitte geben Sie den Vornamen des Gastes ein für das Ticket ein.'), 'error');
     }
 
     if (!$_POST['customer--phone']) {
@@ -54,7 +54,7 @@ function customer_data_field_process()
     }
 
     if (!$_POST['customer--email']) {
-        wc_add_notice(__('Wir benötigen die eMail-Adresse, um dem Gast hinterher um eine Bewertung der Tour zu bitten.'), 'error');
+        wc_add_notice(__('Wir benötigen die eMail-Adresse, um dem Gast nach der Tour eine Feedback-Mail zu schicken.'), 'error');
     }
 }
 

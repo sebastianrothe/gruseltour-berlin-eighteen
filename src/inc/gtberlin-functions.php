@@ -14,9 +14,7 @@ function update_jquery(){
 	wp_enqueue_script('jquery');
 }
 
-add_action('wp_enqueue_scripts', 'update_jquery_migrate');
-function update_jquery_migrate(){
+add_action('wp_enqueue_scripts', 'remove_jquery_migrate');
+function remove_jquery_migrate(){
     wp_deregister_script('jquery-migrate');
-    wp_register_script('jquery-migrate', ("https://code.jquery.com/jquery-migrate-3.0.1.min.js"), 'jquery', '3.0.1', true);
-	wp_enqueue_script('jquery-migrate');
 }
