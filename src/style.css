@@ -100,3 +100,8 @@
 .woocommerce-info {
   background-color: rgba(65, 105, 225, 0.7);
 }
+
+.after-checkout--download {
+  font-size: 1rem;
+  color: #eee;
+}

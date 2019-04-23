@@ -17,7 +17,7 @@ function wpo_wcpdf_thank_you_link( $text, $order ) {
     if ( is_user_logged_in() ) {
         $order_id = method_exists($order, 'get_id') ? $order->get_id() : $order->id;
         $pdf_url = wp_nonce_url( admin_url( 'admin-ajax.php?action=generate_wpo_wcpdf&template_type=invoice&order_ids=' . $order_id . '&my-account'), 'generate_wpo_wcpdf' );
-        $text .= '<p><a href="'.esc_attr($pdf_url).'">Hier kannst du dein Ticket und Rechnung in einem Herunterladen (PDF format).</a></p>';
+        $text .= '<p class="after-checkout--download">Du kannst jetzt dein Ticket und Rechnung in einem <a class="after-checkout--download" href="'.esc_attr($pdf_url).'">hier herunterladen (PDF).</a></p>';
     }
     return $text;
 }
