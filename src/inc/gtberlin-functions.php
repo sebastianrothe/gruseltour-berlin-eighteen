@@ -18,3 +18,8 @@ add_action('wp_enqueue_scripts', 'remove_jquery_migrate');
 function remove_jquery_migrate(){
     wp_deregister_script('jquery-migrate');
 }
+
+add_filter('autoptimize_filter_extra_gfont_fontstring','add_display');
+function add_display($in) {
+  return $in.'&amp;display=auto';
+}
