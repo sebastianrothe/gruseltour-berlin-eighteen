@@ -18,6 +18,12 @@
   }
 }
 
+.lyte-wrapper {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: auto !important;
+}
+
 .wpforms-field-container .wpforms-field {
   padding-bottom: 1rem;
 }
