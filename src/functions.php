@@ -14,7 +14,7 @@ function gtberlin_2018_enqueue_styles() {
 /**
  * WooCommerce adjustments functions and filters.
  */
-require get_stylesheet_directory() . '/inc/woocommerce-functions.php';
+// require get_stylesheet_directory() . '/inc/woocommerce-functions.php';
 
 /**
 * WPO WCPDF adjustments functions and filters.
