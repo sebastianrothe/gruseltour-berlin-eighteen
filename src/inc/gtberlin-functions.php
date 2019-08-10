@@ -23,3 +23,8 @@ add_filter('autoptimize_filter_extra_gfont_fontstring','add_display');
 function add_display($in) {
   return $in.'&amp;display=auto';
 }
+
+//add_filter('autoptimize_filter_js_defer','noRocketsForAO',10,1);
+function noRocketsForAO($in) {
+    return $in.'data-cfasync=false';
+}
