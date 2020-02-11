@@ -29,6 +29,10 @@
   }
 }
 
+.cdsROW.narrow .logo.CDSROWLOGO203 {
+  padding-top: 15px;
+}
+
 .entry-content [class^='wp-block-']:not(.wp-block-gallery) figcaption {
   position: relative;
   bottom: 40px;
