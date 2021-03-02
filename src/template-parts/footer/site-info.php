@@ -22,4 +22,4 @@ if (function_exists('the_privacy_policy_link')) {
 	<span>Unsere besonderen Stadtführungen gibt es auch in anderen Städten: <a href="https://gruseltour-leipzig.de/">Gruseltour Leipzig</a></span>
 </div><!-- .site-info -->
 
-<?php get_template_part( 'template-parts/footer/form', 'tracking' ); ?>
+<?php //get_template_part( 'template-parts/footer/form', 'tracking' ); ?>
