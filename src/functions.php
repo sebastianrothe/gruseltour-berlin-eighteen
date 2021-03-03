@@ -22,6 +22,11 @@ function gtberlin_2018_enqueue_styles() {
 require get_stylesheet_directory() . '/inc/wpo_wcpdf-functions.php';
 
 /**
+* Cloudinary adjustments functions and filters.
+*/
+require get_stylesheet_directory() . '/inc/cloudinary-functions.php';
+
+/**
 * Gruseltour Berlin adjustments functions and filters.
 */
 require get_stylesheet_directory() . '/inc/gtberlin-functions.php';
