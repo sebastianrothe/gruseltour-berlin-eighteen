@@ -10,7 +10,7 @@
 add_action('wp_enqueue_scripts', 'update_jquery');
 function update_jquery(){
     wp_deregister_script('jquery');
-    wp_register_script('jquery', ("https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"), false, '3.5.1', true);
+    wp_register_script('jquery', ("https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"), false, '3.6.0', true);
 	wp_enqueue_script('jquery');
 }
 
