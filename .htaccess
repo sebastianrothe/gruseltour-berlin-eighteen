@@ -7739,16 +7739,16 @@ RewriteRule ^(.*)$ – [F,L]
 </IfModule>
 
 # BEGIN SSL Redirect
-#<IfModule mod_rewrite.c>
-#    RewriteEngine On#´
-#
-#    # this is for proxies and non-https
-#    RewriteCond %{HTTP:X-Forwarded-Proto} =http [OR]
-#
-#    # this is for www
-#    RewriteCond %{HTTP_HOST} ^www\.
-#    RewriteRule ^ https://gruseltour-berlin.de%{REQUEST_URI} [NE,L,R]
-#</IfModule>
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # this is for proxies and non-https
+    RewriteCond %{HTTP:X-Forwarded-Proto} =http [OR]
+
+    # this is for www
+    RewriteCond %{HTTP_HOST} ^www\.
+    RewriteRule ^ https://gruseltour-berlin.de%{REQUEST_URI} [NE,L,R]
+</IfModule>
 # END SSL Redirect
 
 # Special Redirections
@@ -8112,15 +8112,15 @@ AddDefaultCharset utf-8
 #     https://www.iana.org/assignments/well-known-uris/well-known-uris.xhtml
 #     https://tools.ietf.org/html/draft-ietf-acme-acme-12
 
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{HTTPS} !=on
-    # (1)
-    # RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/
-    # RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[\w-]+$
-    # RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
-    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-</IfModule>
+#<IfModule mod_rewrite.c>
+#    RewriteEngine On
+#    RewriteCond %{HTTPS} !=on
+#    # (1)
+#    # RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/
+#    # RewriteCond %{REQUEST_URI} !^/\.well-known/cpanel-dcv/[\w-]+$
+#    # RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+#    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+#</IfModule>
 
 # ----------------------------------------------------------------------
 # | Suppressing the `www.` at the beginning of URLs                    |
