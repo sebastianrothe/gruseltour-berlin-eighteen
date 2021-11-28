@@ -1311,11 +1311,16 @@ FileETag None
     RewriteRule ^wp-includes/theme-compat/ - [F,L]
 </IfModule>
 
+# from https://cachify.pluginkollektiv.org/documentation/
+#
 # BEGIN CACHIFY
 <IfModule mod_rewrite.c>
 	# ENGINE ON
 	RewriteEngine on
 	RewriteBase /
+
+    # and https://gist.github.com/mcguffin/02e27780631ed63182c99d6f29be4aef#gistcomment-2849153
+    SetEnvIf Request_URI ".*" DOCUMENT_ROOT=/home/honeymapwh/www/berlin/wordpress
 
 	# set hostname directory
 	RewriteCond %{HTTPS} on
@@ -1344,8 +1349,8 @@ FileETag None
 	RewriteCond %{QUERY_STRING} ^$
 	RewriteCond %{REQUEST_URI} !^/(wp-admin|wp-content/cache)/.*
 	RewriteCond %{HTTP_COOKIE} !(wp-postpass|wordpress_logged_in|comment_author)_
-	RewriteCond %{DOCUMENT_ROOT}/wordpress/wp-content/cache/cachify/%{ENV:CACHIFY_HOST}%{ENV:CACHIFY_DIR}index.html -f
-	RewriteRule ^(.*) /wordpress/wp-content/cache/cachify/%{ENV:CACHIFY_HOST}%{ENV:CACHIFY_DIR}index.html%{ENV:CACHIFY_SUFFIX} [L]
+	RewriteCond %{DOCUMENT_ROOT}/wp-content/cache/cachify/%{ENV:CACHIFY_HOST}%{ENV:CACHIFY_DIR}index.html -f
+	RewriteRule ^(.*) /wp-content/cache/cachify/%{ENV:CACHIFY_HOST}%{ENV:CACHIFY_DIR}index.html%{ENV:CACHIFY_SUFFIX} [L]
 </IfModule>
 # END CACHIFY
 
