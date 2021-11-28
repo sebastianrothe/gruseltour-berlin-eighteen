@@ -7748,7 +7748,7 @@ RewriteRule ^(.*)$ – [F,L]
 #    # this is for www
 #    RewriteCond %{HTTP_HOST} ^www\.
 #    RewriteRule ^ https://gruseltour-berlin.de%{REQUEST_URI} [NE,L,R]
-#</IfModule> -->
+#</IfModule>
 # END SSL Redirect
 
 # Special Redirections
